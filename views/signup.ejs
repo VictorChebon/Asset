@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fbefef;
+        }
+        .container {
+            background: #fff;
+            padding: 70px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Corrected parentheses */
+            width: 300px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Signup</h2>
+        
+        <% if (message) { %>
+            <div class="message"><%= message %></div>
+        <% } %>
+
+        <form action="/signup" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<%= typeof username !== 'undefined' ? username : '' %>" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+
+            <label for="role">Role:</label>
+            <select name="role" id="role" required>
+                <option value="student" <% if (typeof role !== 'undefined' && role === 'student') { %>selected<% } %>>Student</option>
+                <option value="teacher" <% if (typeof role !== 'undefined' && role === 'teacher') { %>selected<% } %>>Teacher</option>
+            </select>
+
+            <button type="submit">Signup</button>
+        </form>
+
+        <a href="/login">Already have an account? Login</a>
+    </div>
+</body>
+</html>
